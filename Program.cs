@@ -14,9 +14,31 @@ namespace _20200140045_Tugas2_C
             new Program().InsertData();
         }
 
-        public void InsertData()
+        public void InsertData() //method untuk operasi menambhakan data baru ke dalam tabel
         {
+            SqlConnection con = null;
+            try
+            {
+                con = new SqlConnection("data source=DESKTOP-6IF85PV\\FITRIALFIANA;database=FitriAlfiana;Integrated Security = TRUE");
+                con.Open();
 
+                SqlCommand cm = new SqlCommand("insert into Tabel_Barang (Kode_Kue, Nama_Kue, Harga_Kue, Tgl_Exp) values (1123, 'Lemper', 5000, '2022-03-28')", con);
+                cm.ExecuteNonQuery();
+
+                Console.WriteLine("Sukses menambahkan data");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Gagal menambahkan data. " + e);
+                Console.ReadKey();
+            }
+            finally
+            {
+                con.Close();
+
+
+            }
         }
     }
 }
